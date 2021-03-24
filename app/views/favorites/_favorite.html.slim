@@ -1,0 +1,13 @@
+- if user_signed_in?
+    span id="favorite_#{@a.id}"
+        - if !Favorite.exists?(user: current_user, answer_id: @a.id)
+            = link_to answer_favorites_path(@a.id), method: :post, remote: true, class: "favorite-btn favorite-post" do
+                i.far.fa-star.fa-lg style="color: goldenrod;"
+                    = @a.favorites.length
+        - else
+            = link_to answer_favorites_path(@a.id), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
+                i.fas.fa-star.fa-lg style="color: goldenrod;"
+                    = @a.favorites.length
+- else
+    i.fas.fa-star.fa-lg style="color: goldenrod;"
+       = @a.favorites.length

@@ -1,0 +1,38 @@
+.container
+  = form_for @a, url:a_create_path do |f|
+    .row
+      .col-md-10.offset-md-1.form-group
+        h4.text-center 投稿確認
+        .border-bottom.article-border
+        h1.mb-2 = @a.title
+        = f.hidden_field :title
+        = cl_image_tag(@thumbnail, class:'img-fluid mb-3')
+        = image_tag  (@a.image.url)
+        = f.text_field :image_cache
+        = f.hidden_field :select_image
+        p
+          = @a.overview
+          = f.hidden_field :overview
+          = f.hidden_field :answerer
+        - @q_content_post.each_with_index do |x, i|
+          - if @a_head_post[i].present?
+            h3.under = @a_head_post[i]
+          p
+            strong --#{x}
+          p.mb-4
+            - if @a.answerer.present?
+              font.mr-2 color="red"
+                = @a.answerer
+            = @a_content_post[i]
+        - @content_array.each_with_index do |x, i|
+          = f.hidden_field @head_array[i]
+          = f.hidden_field x
+        - if @a.tag_list.present?
+          h5.mb-5
+            - @a.tag_list.each do |tag|
+              span.badge.badge-primary.mr-2
+                = tag      
+              = f.hidden_field :tag_list, value: @a.tag_list.join(',')
+        = f.hidden_field :question_id
+        = f.submit '戻る', name: 'back', class: 'btn btn-secondary btn-lg mr-3'
+        = f.submit '投稿', class: 'btn btn-success btn-lg'

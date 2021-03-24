@@ -1,0 +1,24 @@
+.fluid-container
+  .d-flex.justify-content-around.flex-nowrap.m-0
+    .d-none.d-sm-inline-block
+      = link_to root_path, class:'text-decoration-none' do
+        h1.text-dark intervieeew.net
+    .d-none.d-sm-inline-block
+       = search_form_for @search, url:answers_path, class:'form-inline' do |f|
+        = f.button :type => "submit", class:'bg-white', style: 'border-style: none;' do
+          i.fas.fa-search.fa-lg.mt-2
+        = f.search_field :sorts, value: 'id desc', class: 'form-control', style: 'display: none;'
+        = f.search_field :title_or_tags_name_cont, value: params.dig(:q, :title_or_tags_name_cont), class: 'form-control mt-2', placeholder:'記事を検索'
+nav.navbar.navbar-expand-sm.navbar-light.bg-info.mb-5
+  a.navbar-brand.d-block.d-sm-none.center-align.text-light intervieeew.net
+  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse.justify-content-center
+    ul.navbar-nav.row
+      li.nav-item.col-sm-3.col-lg-2.offset-lg-2.text-center = link_to '見る', answers_path(q: { created_at_gteq: 30.day.ago.all_day, sorts: 'favorites_count desc' }), class: 'nav-link text-light'
+      li.nav-item.col-sm-3.col-lg-2.text-center = link_to '答える', questions_path(q: { created_at_gteq: 30.day.ago.all_day, sorts: 'reply_count desc' }), class: 'nav-link text-light'
+      li.nav-item.col-sm-3.col-lg-2.text-center = link_to '質問する', q_new_path, class: 'nav-link text-light'
+      - if user_signed_in?
+        li.nav-item.col-sm-3.col-lg-2.text-center = link_to 'マイページ', user_path(current_user.public_uid), class: 'nav-link text-light'
+      - else
+        li.nav-item.col-sm-3.col-lg-2.text-center = link_to 'ログイン', new_user_session_path, class: 'nav-link text-light' 

@@ -1,0 +1,28 @@
+.container
+  = form_for @q, url: qs_path do |f|
+    .row
+      .col-md-10.offset-md-1.form-group
+        h2.text-center 投稿確認
+        .border-bottom(style="margin: 10px 0;")
+        p
+         b タイトル
+        h4 = @q.title
+        =f.hidden_field :title
+        .border-bottom(style="margin: 10px 0;")
+        - @q_content_post.each_with_index do |x, i|
+          p
+            b 質問#{i+1}
+          p = x
+          .border-bottom(style="margin: 10px 0;")
+        - @content_array.each do |x|
+          = f.hidden_field x
+        - if @q.tag_list.present?
+          p
+            b タグ
+          h5.mb-5
+            - @q.tag_list.each do |tag|
+              span.badge.badge-primary.mr-2
+                = tag      
+              = f.hidden_field :tag_list, value: @q.tag_list.join(',')
+        = f.submit '戻る', name: 'back', class: 'btn btn-secondary btn-lg mr-3'
+        = f.submit '投稿', class: 'btn btn-success btn-lg'

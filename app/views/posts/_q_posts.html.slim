@@ -1,0 +1,22 @@
+- posts.each_with_index do |q,i|
+    = link_to q_show_path(q.public_uid), class:'text-decoration-none' do
+        article
+            h3.article-title = q.title
+            p.text-dark = [q.content_1,q.content_2,q.content_3,q.content_4,q.content_5,q.content_6,q.content_7,q.content_8,q.content_9,q.content_10].compact.reject(&:empty?).join(',').truncate(200)
+            .d-flex.flex-wrap
+                - if q.tag_list.present?
+                        span.badge.badge-primary.mr-5
+                            i.far.fa-question-circle
+                            = q.tag_list.first.truncate(15)
+                span.small.mr-5 style="color: green;"
+                    i.fas.fa-reply.mr-1
+                    = q.answers.length
+                span.small.text-dark.mr-5
+                    i.fas.fa-user-circle
+                    = q.user.username
+                span.small.text-dark
+                    i.fas.fa-clock
+                    = l q.created_at, format: :long
+    - unless i == posts.length - 1
+        .border-bottom.article-border.mt-3.mb-3
+    

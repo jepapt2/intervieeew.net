@@ -1,0 +1,23 @@
+.container
+    .row
+      .col-md-10.offset-md-1.form-group
+        h2 = @q.title
+        .border-bottom.article-border
+        - @q_content_post.each_with_index do |x, i|
+          p
+            b 質問#{i+1}
+          p = x
+          .border-bottom.article-border
+        -if @q.tag_list.present?
+          p.mb-3
+            - @q.tag_list.each do |tag|
+              = link_to :controller=>"questions",:action=>"index",:q=>{:title_or_tags_name_cont => tag, :sorts => 'id desc'} do
+                span.badge.badge-primary.mr-2
+                  i.far.fa-question-circle
+                  = tag
+        = link_to user_path(@q.user.public_uid)
+          p.mb-5 投稿者:#{@q.user.username} 
+        = link_to '答える', a_new_path(@q.public_uid), class:'btn btn-lg btn-info btn-block mb-5'
+        -if @q.answers.present?
+          h3.bg-light この質問に回答した投稿
+          == render './posts/a_posts', posts: @q.answers.order('id desc').first(3)

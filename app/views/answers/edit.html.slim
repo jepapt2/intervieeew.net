@@ -1,0 +1,72 @@
+#App.container
+  = form_with model: @a, local: true, url: a_update_path do |f|
+    = render 'layouts/error_messages', model: f.object 
+    .row
+      .col-md-10.offset-md-1.form-group
+        .row
+          .col-md-2
+            = f.label :title, 'タイトル'
+            small
+              span.badge.badge-danger 必須
+          .col-md-10
+            = f.text_field :title, class: 'form-control', "v-model" => "title"
+            text-count :text="title" :limit="50"
+            p#initial_title(style="display: none;") = @a.title
+          .col-12.border-bottom.article-border
+          .col-md-2
+            = f.label :answerer, '回答者'
+          .col-md-10
+            = f.text_field :answerer, class: 'form-control', "v-model" => "answerer"
+            text-count :text="answerer" :limit="10"
+            p#initial_answerer(style="display: none;") = @a.answerer
+          .col-12.border-bottom.article-border
+          .col-md-2
+            = f.label :overview, '概要'
+          .col-md-10
+            = f.text_area :overview, class: 'form-control', "v-model" => "overview"
+            text-count :text="overview" :limit="1000"
+            p#initial_overview(style="display: none;") = @a.overview
+          .col-12.border-bottom.article-border
+          .col-12
+            = f.label :image, 'サムネイル'
+            br
+            button.btn.btn-info.mr-4 type="button" @click="free_image = true; up_image = true" :disabled="free_image" フリー素材から選ぶ
+            button.btn.btn-info type="button" @click="free_image = false; up_image = false" :disabled="!up_image" アップロードする
+            / ここからフリー素材
+            .free_image.mt-2 v-if="free_image"
+              - @select_image.each_with_index do |x, i|
+                - if @select_image.length/2 === i
+                  br
+                label
+                  = f.radio_button :select_image, x, class:'image-radio', "v-on:click" => "reset()", "v-model" => "radio_reset"
+                  span
+                    = cl_image_tag(x, width: 150, crop: :fill, class: 'image')
+            / フリー素材ここまで
+            = f.file_field :image, class: 'form-control-file mt-2', "v-bind:disabled" => "up_image", "ref" => "file"
+            - @a_q_content_post.compact.reject(&:empty?).each_with_index do |x, i|
+              .border-bottom(style="margin: 10px 0;")
+              span.badge.badge-info.head @click="changehead(#{i})" 
+                - if i === 0 
+                  | 見出しを追加する>>
+                - else 
+                  | >>
+              div v-show="head_show[#{i}]"
+                = f.text_field @head_array[i], class: 'form-control', "v-model" => "head[#{i}]"
+                text-count :text="head[#{i}]" :limit="20"
+              p
+                b --#{x}
+              = f.text_area @content_array[i], class: 'form-control', "v-model" => "content[#{i}]"
+              text-count :text="content[#{i}]" :limit="255"
+          .col-12.border-bottom.article-border
+          .col-md-2
+              = f.label :tag_list, 'タグ'
+          .col-md-10
+              = f.text_field :tag_list, value: @a.tag_list.join(','), class: "form-control"
+              small 半角コンマで区切って入力(例：ゲーム,アニメ,キャラクター)
+          .col-12.mt-3
+            = f.submit "投稿する", class:"btn btn-secondary btn-block mb-3"
+            - @a_content_post.each_with_index do |x, i|
+              p id="initial_head_#{i}" style="display: none;" = @a_head_post[i]
+              p id="initial_content_#{i}" style="display: none;" = x
+= stylesheet_pack_tag '../stylecheets/a_new.scss'
+= javascript_pack_tag 'a_edit.js'

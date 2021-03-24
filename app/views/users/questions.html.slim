@@ -1,0 +1,32 @@
+.container
+    .row
+        .col-md-10.offset-md-1
+            .row
+                .col-md-4.order-md-2.text-right.text-nowrap.mb-4
+                    span.btn-group.mr-3
+                        - if params.dig(:q, :created_at_gteq).present?
+                            = link_to '最近',{:controller=>"questions",:action=>"index",:q=>{:created_at_gteq => 30.day.ago.all_day, :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :sorts => params.dig(:q, :sorts)}}, class:'btn btn-info'
+                            = link_to '全部',{:controller=>"questions",:action=>"index",:q=>{:created_at_gteq => '', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :sorts => params.dig(:q, :sorts)}}, class:'btn btn-outline-info'
+                        - else
+                            = link_to '最近',{:controller=>"questions",:action=>"index",:q=>{:created_at_gteq => 30.day.ago.all_day, :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :sorts => params.dig(:q, :sorts)}}, class:'btn btn-outline-info'
+                            = link_to '全部',{:controller=>"questions",:action=>"index",:q=>{:created_at_gteq => '', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :sorts => params.dig(:q, :sorts)}}, class:'btn btn-info'
+                    span.btn-group
+                        - if params.dig(:q, :sorts) === 'reply_count desc'
+                            = link_to '人気順',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'reply_count desc', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont),:created_at_gteq => params.dig(:q, :created_at_gteq)}}, class:'btn btn-info'
+                            = link_to '新着順',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'id desc', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :created_at_gteq => params.dig(:q, :created_at_gteq)}}, class:'btn btn-outline-info'
+                        - else
+                            = link_to '人気順',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'reply_count desc', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont),:created_at_gteq => params.dig(:q, :created_at_gteq)}}, class:'btn btn-outline-info'
+                            = link_to '新着順',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'id desc', :title_or_tags_name_cont => params.dig(:q, :title_or_tags_name_cont), :created_at_gteq => params.dig(:q, :created_at_gteq)}}, class:'btn btn-info'
+                .col-md-8.order-md-1.mb-4
+                    = search_form_for @search, url:users_q_path do |f|
+                        = f.search_field :created_at_gteq, value: params.dig(:q, :created_at_gteq), class: 'form-control', style: 'display: none;'
+                        = f.search_field :sorts, value: params.dig(:q, :sorts), class: 'form-control', style: 'display: none;'
+                        .input-group
+                            = f.search_field :title_or_tags_name_cont, value: params.dig(:q, :title_or_tags_name_cont), class: 'form-control'
+                            span.input-group-btn
+                                = f.submit '検索', class: 'btn btn-info'
+            == render './posts/q_posts', posts: @qs
+            - unless @qs.present?
+                .alert.alert-secondary 検索結果はありませんでした
+            .border-bottom.article-border.mt-3.mb-5
+            = paginate @qs

@@ -1,0 +1,60 @@
+- set_meta_tags title: @a.title,
+    og: {   site_name: 'intervieeew.net',
+            title: @a.title,
+            description: 'それっぽいインタビュー記事を自分で作れる！',
+            type: 'website',
+            url: request.original_url,
+            locale: 'ja_JP',
+            image: @thumbnail},
+    twitter: {card: 'summary_large_image',
+        }
+.container
+    .row
+        .col-md-10.offset-md-1
+            - if user_signed_in?
+                - if current_user.id === @a.user.id
+                    .text-right
+                        = link_to "編集する", a_edit_path(@a.public_uid), class: 'btn btn-outline-secondary'
+            .d-flex.justify-content-between
+                == render './favorites/favorite'
+                a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" Tweet
+                script[async src="https://platform.twitter.com/widgets.js" charset="utf-8"]
+            h1.mb-4 = @a.title
+            = cl_image_tag(@thumbnail, class:'img-fluid mb-3')
+            p
+                = @a.overview
+            - @a_q_content_post.compact.reject(&:empty?).each_with_index do |x, i|
+                - if @a_head_post[i].present?
+                    h3.under = @a_head_post[i]
+                p.mt-4
+                    strong --#{x}
+                p
+                - if @a.answerer.present?
+                    font.mr-2 color="red"
+                        = @a.answerer
+                = @a_content_post[i]
+            - if @a.tag_list.present?
+                h5.mb-5
+                - @a.tag_list.each do |tag|
+                    = link_to :controller=>"answers",:action=>"index",:q=>{:title_or_tags_name_cont => tag, :sorts => 'id desc'} do
+                        span.badge.badge-info.mr-2
+                            i.fas.fa-tag
+                            = tag
+            .border-bottom.article-border
+            = link_to user_path(@a.user.public_uid)
+                p 投稿者:#{@a.user.username} 
+            = link_to q_show_path(@a.question.public_uid),class:'text-decoration-none text-dark' do 
+                .card
+                    .card-header
+                        | この投稿の質問
+                    .card-body
+                        h5.card-title
+                            = @a.question.title
+                        p.card-text
+                            = [@a.question.content_1,@a.question.content_2,@a.question.content_3,@a.question.content_4,@a.question.content_5,@a.question.content_6,@a.question.content_7,@a.question.content_8,@a.question.content_9,@a.question.content_10].compact.reject(&:empty?).join(',').truncate(200)
+                        - if @a.question.tag_list.present?
+                            p
+                                span.badge.badge-primary
+                                    i.far.fa-question-circle
+                                    = @a.question.tag_list.first
+                    

@@ -1,0 +1,45 @@
+#App.container
+  = form_with model: @q, local: true, url: q_confirm_path do |f|
+    = render 'layouts/error_messages', model: f.object 
+    .row
+      .col-md-10.offset-md-1.form-group
+        .row
+          .col-md-2
+            = f.label :title, 'タイトル'
+            small
+              span.badge.badge-danger 必須
+          .col-md-10
+            = f.text_field :title, class: 'form-control', "v-model" => "title"
+            text-count :text="title" :limit="50"
+            p#initial_title(style="display: none;") = @q.title
+          / content開始
+          - @content_array.each_with_index do |x, i|
+            template v-if="#{i} < fieldCount"
+              .col-12.border-bottom.article-border
+              .col-md-2
+                = f.label x, "質問#{i+1}"
+                - if i < 3
+                  small
+                    span.badge.badge-danger 必須
+              .col-md-10    
+                = f.text_area x, class: 'form-control', "v-model" => "content[#{i}]"
+                text-count :text="content[#{i}]" :limit="255"
+          / contentここまで
+          - if @q_content_post.present?
+            .initial_content
+              - @q_initial_content_post.each_with_index do |x, i|
+                p id="initial_content_#{i}" style="display: none;" = x
+          .col-12.border.bg-light.p-1.rounded.text-center.d-flex.justify-content-around.mb-3
+            span.my-auto 質問を追加
+            button.btn.btn-info.col-3.ml-2 type="button" v-on:click="fieldCount++" +1
+            button.btn.btn-info.col-3.ml-2 type="button" v-on:click="fieldCount += 5" +5
+            button.btn.btn-info.col-3.ml-2 type="button" v-on:click="fieldCount += 10" +10
+          .col-md-2
+            = f.label :tag_list, 'タグ'
+          .col-md-10
+            = f.text_field :tag_list, value: @q.tag_list.join(','), class: "form-control"
+            small 半角コンマで区切って入力(例：ゲーム,アニメ,キャラクター)
+          .col-12.mt-3
+            = f.submit "投稿する", class:"btn btn-secondary btn-block mb-3"
+              
+= javascript_pack_tag 'q_new'

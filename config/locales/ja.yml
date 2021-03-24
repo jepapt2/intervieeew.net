@@ -1,0 +1,589 @@
+ja:
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+        blank: "が空です"
+        too_long: "が長すぎます"
+    models:
+      question: '質問'
+      answer: '回答'
+    attributes:
+      question:
+        title: 'タイトル'
+        content_1: '質問1'
+        content_2: '質問2'
+        content_3: '質問3'
+        content_4: '質問4'
+        content_5: '質問5'
+        content_6: '質問6'
+        content_7: '質問7'
+        content_8: '質問8'
+        content_9: '質問9'
+        content_10: '質問10'
+        content_11: '質問11'
+        content_12: '質問12'
+        content_13: '質問13'
+        content_14: '質問14'
+        content_15: '質問15'
+        content_16: '質問16'
+        content_17: '質問17'
+        content_18: '質問18'
+        content_19: '質問19'
+        content_20: '質問20'
+        content_21: '質問21'
+        content_22: '質問22'
+        content_23: '質問23'
+        content_24: '質問24'
+        content_25: '質問25'
+        content_26: '質問26'
+        content_27: '質問27'
+        content_28: '質問28'
+        content_29: '質問29'
+        content_30: '質問30'
+        content_31: '質問31'
+        content_32: '質問32'
+        content_33: '質問33'
+        content_34: '質問34'
+        content_35: '質問35'
+        content_36: '質問36'
+        content_37: '質問37'
+        content_38: '質問38'
+        content_39: '質問39'
+        content_40: '質問40'
+        content_41: '質問41'
+        content_42: '質問42'
+        content_43: '質問43'
+        content_44: '質問44'
+        content_45: '質問45'
+        content_46: '質問46'
+        content_47: '質問47'
+        content_48: '質問48'
+        content_49: '質問49'
+        content_50: '質問50'
+        content_51: '質問51'
+        content_52: '質問52'
+        content_53: '質問53'
+        content_54: '質問54'
+        content_55: '質問55'
+        content_56: '質問56'
+        content_57: '質問57'
+        content_58: '質問58'
+        content_59: '質問59'
+        content_60: '質問60'
+        content_61: '質問61'
+        content_62: '質問62'
+        content_63: '質問63'
+        content_64: '質問64'
+        content_65: '質問65'
+        content_66: '質問66'
+        content_67: '質問67'
+        content_68: '質問68'
+        content_69: '質問69'
+        content_70: '質問70'
+        content_71: '質問71'
+        content_72: '質問72'
+        content_73: '質問73'
+        content_74: '質問74'
+        content_75: '質問75'
+        content_76: '質問76'
+        content_77: '質問77'
+        content_78: '質問78'
+        content_79: '質問79'
+        content_80: '質問80'
+        content_81: '質問81'
+        content_82: '質問82'
+        content_83: '質問83'
+        content_84: '質問84'
+        content_85: '質問85'
+        content_86: '質問86'
+        content_87: '質問87'
+        content_88: '質問88'
+        content_89: '質問89'
+        content_90: '質問90'
+        content_91: '質問91'
+        content_92: '質問92'
+        content_93: '質問93'
+        content_94: '質問94'
+        content_95: '質問95'
+        content_96: '質問96'
+        content_97: '質問97'
+        content_98: '質問98'
+        content_99: '質問99'
+        content_100: '質問100'
+      answer:
+        title: 'タイトル'
+        content_1: '回答1'
+        content_2: '回答2'
+        content_3: '回答3'
+        content_4: '回答4'
+        content_5: '回答5'
+        content_6: '回答6'
+        content_7: '回答7'
+        content_8: '回答8'
+        content_9: '回答9'
+        content_10: '回答10'
+        content_11: '回答11'
+        content_12: '回答12'
+        content_13: '回答13'
+        content_14: '回答14'
+        content_15: '回答15'
+        content_16: '回答16'
+        content_17: '回答17'
+        content_18: '回答18'
+        content_19: '回答19'
+        content_20: '回答20'
+        content_21: '回答21'
+        content_22: '回答22'
+        content_23: '回答23'
+        content_24: '回答24'
+        content_25: '回答25'
+        content_26: '回答26'
+        content_27: '回答27'
+        content_28: '回答28'
+        content_29: '回答29'
+        content_30: '回答30'
+        content_31: '回答31'
+        content_32: '回答32'
+        content_33: '回答33'
+        content_34: '回答34'
+        content_35: '回答35'
+        content_36: '回答36'
+        content_37: '回答37'
+        content_38: '回答38'
+        content_39: '回答39'
+        content_40: '回答40'
+        content_41: '回答41'
+        content_42: '回答42'
+        content_43: '回答43'
+        content_44: '回答44'
+        content_45: '回答45'
+        content_46: '回答46'
+        content_47: '回答47'
+        content_48: '回答48'
+        content_49: '回答49'
+        content_50: '回答50'
+        content_51: '回答51'
+        content_52: '回答52'
+        content_53: '回答53'
+        content_54: '回答54'
+        content_55: '回答55'
+        content_56: '回答56'
+        content_57: '回答57'
+        content_58: '回答58'
+        content_59: '回答59'
+        content_60: '回答60'
+        content_61: '回答61'
+        content_62: '回答62'
+        content_63: '回答63'
+        content_64: '回答64'
+        content_65: '回答65'
+        content_66: '回答66'
+        content_67: '回答67'
+        content_68: '回答68'
+        content_69: '回答69'
+        content_70: '回答70'
+        content_71: '回答71'
+        content_72: '回答72'
+        content_73: '回答73'
+        content_74: '回答74'
+        content_75: '回答75'
+        content_76: '回答76'
+        content_77: '回答77'
+        content_78: '回答78'
+        content_79: '回答79'
+        content_80: '回答80'
+        content_81: '回答81'
+        content_82: '回答82'
+        content_83: '回答83'
+        content_84: '回答84'
+        content_85: '回答85'
+        content_86: '回答86'
+        content_87: '回答87'
+        content_88: '回答88'
+        content_89: '回答89'
+        content_90: '回答90'
+        content_91: '回答91'
+        content_92: '回答92'
+        content_93: '回答93'
+        content_94: '回答94'
+        content_95: '回答95'
+        content_96: '回答96'
+        content_97: '回答97'
+        content_98: '回答98'
+        content_99: '回答99'
+        content_100: '回答100'
+        head_1: '見出し1'
+        head_2: '見出し2'
+        head_3: '見出し3'
+        head_4: '見出し4'
+        head_5: '見出し5'
+        head_6: '見出し6'
+        head_7: '見出し7'
+        head_8: '見出し8'
+        head_9: '見出し9'
+        head_10: '見出し10'
+        head_11: '見出し11'
+        head_12: '見出し12'
+        head_13: '見出し13'
+        head_14: '見出し14'
+        head_15: '見出し15'
+        head_16: '見出し16'
+        head_17: '見出し17'
+        head_18: '見出し18'
+        head_19: '見出し19'
+        head_20: '見出し20'
+        head_21: '見出し21'
+        head_22: '見出し22'
+        head_23: '見出し23'
+        head_24: '見出し24'
+        head_25: '見出し25'
+        head_26: '見出し26'
+        head_27: '見出し27'
+        head_28: '見出し28'
+        head_29: '見出し29'
+        head_30: '見出し30'
+        head_31: '見出し31'
+        head_32: '見出し32'
+        head_33: '見出し33'
+        head_34: '見出し34'
+        head_35: '見出し35'
+        head_36: '見出し36'
+        head_37: '見出し37'
+        head_38: '見出し38'
+        head_39: '見出し39'
+        head_40: '見出し40'
+        head_41: '見出し41'
+        head_42: '見出し42'
+        head_43: '見出し43'
+        head_44: '見出し44'
+        head_45: '見出し45'
+        head_46: '見出し46'
+        head_47: '見出し47'
+        head_48: '見出し48'
+        head_49: '見出し49'
+        head_50: '見出し50'
+        head_51: '見出し51'
+        head_52: '見出し52'
+        head_53: '見出し53'
+        head_54: '見出し54'
+        head_55: '見出し55'
+        head_56: '見出し56'
+        head_57: '見出し57'
+        head_58: '見出し58'
+        head_59: '見出し59'
+        head_60: '見出し60'
+        head_61: '見出し61'
+        head_62: '見出し62'
+        head_63: '見出し63'
+        head_64: '見出し64'
+        head_65: '見出し65'
+        head_66: '見出し66'
+        head_67: '見出し67'
+        head_68: '見出し68'
+        head_69: '見出し69'
+        head_70: '見出し70'
+        head_71: '見出し71'
+        head_72: '見出し72'
+        head_73: '見出し73'
+        head_74: '見出し74'
+        head_75: '見出し75'
+        head_76: '見出し76'
+        head_77: '見出し77'
+        head_78: '見出し78'
+        head_79: '見出し79'
+        head_80: '見出し80'
+        head_81: '見出し81'
+        head_82: '見出し82'
+        head_83: '見出し83'
+        head_84: '見出し84'
+        head_85: '見出し85'
+        head_86: '見出し86'
+        head_87: '見出し87'
+        head_88: '見出し88'
+        head_89: '見出し89'
+        head_90: '見出し90'
+        head_91: '見出し91'
+        head_92: '見出し92'
+        head_93: '見出し93'
+        head_94: '見出し94'
+        head_95: '見出し95'
+        head_96: '見出し96'
+        head_97: '見出し97'
+        head_98: '見出し98'
+        head_99: '見出し99'
+        head_100: '見出し100'
+        image_or_select: 'サムネイル'
+        answerer: '回答者'
+        ovewview: '概要'
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      almost_x_years:
+        one: 1年弱
+        other: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_seconds:
+        one: 1秒以内
+        other: "%{count}秒未満"
+      less_than_x_minutes:
+        one: 1分以内
+        other: "%{count}分未満"
+      over_x_years:
+        one: 1年以上
+        other: "%{count}年以上"
+      x_seconds:
+        one: 1秒
+        other: "%{count}秒"
+      x_minutes:
+        one: 1分
+        other: "%{count}分"
+      x_days:
+        one: 1日
+        other: "%{count}日"
+      x_months:
+        one: 1ヶ月
+        other: "%{count}ヶ月"
+      x_years:
+        one: 1年
+        other: "%{count}年"
+    prompts:
+      second: 秒
+      minute: 分
+      hour: 時
+      day: 日
+      month: 月
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+    template:
+      body: 次の項目を確認してください
+      header:
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}個のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: "、"
+      two_words_connector: "、"
+      words_connector: "、"
+  time:
+    am: 午前
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+    pm: 午後
+
+  errors:
+    messages:
+      not_found: "は見つかりませんでした"
+#      not_found: "not found"
+      already_confirmed: "は既に登録済みです"
+#      already_confirmed: "was already confirmed"
+      not_locked: "は凍結されていません"
+#      not_locked: "was not locked"
+
+  devise:
+    failure:
+      unauthenticated: 'ログインしてください。'
+#      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: '本登録を行ってください。'
+#      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'あなたのアカウントは凍結されています。'
+#      locked: 'Your account is locked.'
+      invalid: 'メールアドレスかパスワードが違います。'
+#      invalid: 'Invalid email or password.'
+      invalid_token: '認証キーが不正です。'
+#      invalid_token: 'Invalid authentication token.'
+      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+#      timeout: 'Your session expired, please sign in again to continue.'
+      inactive: 'アカウントがアクティベートされていません。'
+#      inactive: 'Your account was not activated yet.'
+    sessions:
+      signed_in: 'ログインしました。'
+#      signed_in: 'Signed in successfully.'
+      signed_out: 'ログアウトしました。'
+#      signed_out: 'Signed out successfully.'
+    passwords:
+      send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
+#      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'パスワードを変更しました。'
+#      updated: 'Your password was changed successfully. You are now signed in.'
+    confirmations:
+      send_instructions: '登録方法を数分以内にメールでご連絡します。'
+#      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'アカウントを登録しました。'
+#      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
+      signed_up: 'アカウント登録を受け付けました。確認のメールをお送りします。'
+#      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent to your e-mail.'
+      updated: 'アカウントを更新しました。'
+#      updated: 'You updated your account successfully.'
+      destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
+#      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+#      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'アカウントを凍結解除しました。'
+#      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+    mailer:
+      confirmation_instructions:
+        subject: 'アカウントの登録方法'
+#        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'パスワードの再設定'
+#        subject: 'Reset password instructions'
+      unlock_instructions:
+        subject: 'アカウントの凍結解除'
+#        subject: 'Unlock Instructions'

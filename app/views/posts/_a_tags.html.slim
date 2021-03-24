@@ -1,0 +1,6 @@
+ - if a_tag.present?
+    p.article-tag
+        - a_tag.each do |tag|
+            span.badge.badge-info
+                i.fas.fa-tag
+                = tag
