@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   before_action :content_set, :head_set
-  require 'class/select_image'
 
   def index
     @search = Answer.ransack(params[:q])
@@ -19,8 +18,7 @@ class AnswersController < ApplicationController
     @q = Question.find_by(public_uid: params[:id])
     if user_signed_in?
       @a = current_user.answers.new
-      s_i = SelectImage.new
-      @select_image = s_i.image
+      @select_image = image
       q_content_post_set
       a_content_post_set
       a_head_post_set
@@ -44,8 +42,7 @@ class AnswersController < ApplicationController
   def create
     @a = current_user.answers.new(a_params)
     @q = Question.find_by(public_uid: params[:id])
-    s_i = SelectImage.new
-    @select_image = s_i.image
+    @select_image = image
     q_content_post_set
     a_content_post_set
     a_head_post_set
@@ -104,6 +101,17 @@ class AnswersController < ApplicationController
   private
   def a_params
     params.require(:answer).permit(:title, :answerer, :overview, @content_array, @head_array, :image, :image_cache, :select_image, :question_id, :tag_list)
-  end 
+  end
+
+  def image 
+    a = []
+    for i in 1..18 do
+      a.push('free_image/' + i.to_s + '.jpg')
+    end
+    for i in 1..2 do
+      a.push('free_image/p' + i.to_s + '.png')
+    end
+    return a
+  end
 
 end
