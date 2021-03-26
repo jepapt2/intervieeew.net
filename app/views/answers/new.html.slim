@@ -1,6 +1,7 @@
+= stylesheet_pack_tag 'a_new'
 #App.container
   = form_with model: @a, local: true, url: a_create_path do |f|
-    = render 'layouts/error_messages', model: f.object 
+    = render 'layouts/error_messages', model: f.object
     .row
       .col-md-10.offset-md-1.form-group
         .row

@@ -16,9 +16,10 @@
                                 h2.text-dark = @fav_top.title
                                 p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
                                 .d-flex.justify-content-between.flex-wrap
-                                    span.badge.badge-info
-                                        i.fas.fa-tag
-                                        = @fav_top.tag_list.first.truncate(15)
+                                    - if @fav_top.tag_list.present?
+                                        span.badge.badge-info
+                                            i.fas.fa-tag
+                                            = @fav_top.tag_list.first.truncate(15)
                                     span.small style="color: goldenrod;"
                                         i.fas.fa-star.mr-1
                                         = @fav_top.favorites.length
@@ -40,9 +41,10 @@
                                     h3.article-title = @fav_top.title
                                     p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
                                     .d-flex.justify-content-between.flex-wrap
-                                        span.badge.badge-info.mr-2
-                                            i.fas.fa-tag
-                                            = @fav_top.tag_list.first.truncate(15)
+                                        - if @fav_top.tag_list.present?
+                                            span.badge.badge-info.mr-2
+                                                i.fas.fa-tag
+                                                = @fav_top.tag_list.first.truncate(15)
                                         span.small.mr-2 style="color: goldenrod;"
                                             i.fas.fa-star.mr-1
                                             = @fav_top.favorites.length

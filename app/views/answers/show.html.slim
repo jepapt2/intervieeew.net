@@ -13,7 +13,7 @@
         .col-md-10.offset-md-1
             - if user_signed_in?
                 - if current_user.id === @a.user.id
-                    .text-right
+                    .text-right.mb-4
                         = link_to "編集する", a_edit_path(@a.public_uid), class: 'btn btn-outline-secondary'
             .d-flex.justify-content-between
                 == render './favorites/favorite'
