@@ -10,7 +10,7 @@ br/
       i.fab.fa-twitter.fa-lg
       b twitterでログイン
   br/
-  = link_to  user_facebook_omniauth_authorize_path, class: 'btn btn-outline-info btn-block' do
+  = link_to  user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-outline-info btn-block' do
       i.fab.fa-facebook-square.fa-lg 
       b facebookでログイン
   br/

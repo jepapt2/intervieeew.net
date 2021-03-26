@@ -1,97 +1,102 @@
 .container-fluid
     .row
         .col-md-10.offset-md-1
-            h2　人気記事
-            .title-border.mb-3
-            .row.mx-1
-                .col-md-6.d-none.d-md-inline-block.top-article
-                    / = link_to a_show_path(@fav_top.public_uid), class:'text-decoration-none' do
-                    /     .d-flex.flex-column
-                    /         div
-                    /             - if @fav_top.image.present?
-                    /                 = cl_image_tag(@fav_top.image, width: 1000, height: 500,  crop: :fill, class:'img-fluid')
-                    /             - else 
-                    /                 = cl_image_tag(@fav_top.select_image, width: 500, height: 250,  crop: :fill, class:'img-fluid')
-                    /         h2.text-dark = @fav_top.title
-                    /         p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
-                    /         .d-flex.justify-content-between.flex-wrap
-                    /             span.badge.badge-info
-                    /                 i.fas.fa-tag
-                    /                 = @fav_top.tag_list.first.truncate(15)
-                    /             span.small style="color: goldenrod;"
-                    /                 i.fas.fa-star.mr-1
-                    /                 = @fav_top.favorites.length
-                    /             span.small.text-dark 
-                    /                 i.fas.fa-user-circle
-                    /                 = @fav_top.user.username
-                    /             span.small.text-dark
-                    /                 i.fas.fa-clock
-                    /                 = l @fav_top.created_at, format: :long
-            /     .col-md-6.d-md-none.p-0
-            /         = link_to a_show_path(@fav_top.public_uid), class:'text-decoration-none' do
-            /             article.article.d-flex.flex-nowrap
-            /                 .article-image.mr-2
-            /                     - if @fav_top.image.present?
-            /                         = cl_image_tag(@fav_top.image, width: 300, height: 300,  crop: :fill, class:'')
-            /                     - else 
-            /                         = cl_image_tag(@fav_top.select_image, width: 300, height: 300,  crop: :fill, class:'')
-            /                 .align-self-center.d-flex.flex-column
-            /                     h3.article-title = @fav_top.title
-            /                     p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
-            /                     .d-flex.justify-content-between.flex-wrap
-            /                         span.badge.badge-info.mr-2
-            /                             i.fas.fa-tag
-            /                             = @fav_top.tag_list.first.truncate(15)
-            /                         span.small.mr-2 style="color: goldenrod;"
-            /                             i.fas.fa-star.mr-1
-            /                             = @fav_top.favorites.length
-            /                         span.small.mr-2.text-dark 
-            /                             i.fas.fa-user-circle
-            /                             = @fav_top.user.username
-            /                         span.small.text-dark
-            /                             i.fas.fa-clock
-            /                             = l @fav_top.created_at, format: :long
-            /         .border-bottom.article-border.mt-3.mb-3
-            /     .col-md-6.p-0
-            /         - @fav_side.each_with_index do |a,i|
-            /             = link_to a_show_path(a.public_uid), class:'text-decoration-none' do
-            /                 article.article.d-flex.flex-nowrap
-            /                     .article-image.mr-2
-            /                         - if a.image.present?
-            /                             = cl_image_tag(a.image, width: 200, height: 120,  crop: :fill, class:'')
-            /                         - else 
-            /                             = cl_image_tag(a.select_image, width: 200, height: 120,  crop: :fill, class:'')
-            /                     .align-self-center.d-flex.flex-column 
-            /                         h4.article-title = a.title
-            /                         .d-flex.justify-content-between.flex-wrap
-            /                             - if a.tag_list.present?
-            /                                 span.badge.badge-info.mr-2
-            /                                     i.fas.fa-tag
-            /                                     = a.tag_list.first.truncate(15)
-            /                             span.small.mr-2 style="color: goldenrod;"
-            /                                 i.fas.fa-star.mr-1
-            /                                 = a.favorites.length
-            /                             span.small.text-dark.mr-2 
-            /                                 i.fas.fa-user-circle
-            /                                 = a.user.username
-            /                             span.small.text-dark.mr-2
-            /                                 i.fas.fa-clock
-            /                                 = l a.created_at, format: :long
-            /                 - unless i == 2
-            /                     .border-bottom.article-border
-            
-            / = link_to '人気の投稿をもっと見る',{:controller=>"answers",:action=>"index",:q=>{:created_at_gteq => 30.day.ago.all_day, :sorts => 'favorites_count desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
-            / h2.mt-4　新着記事
-            / .title-border.mb-3
-            / == render './posts/a_posts', posts: @a_new
-            / = link_to '最新の投稿をもっと見る',{:controller=>"answers",:action=>"index",:q=>{:sorts => 'id desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
-            / h2.mt-4　人気の質問
-            / .title-border.mb-3
-            / .mx-5
-            /     == render './posts/q_posts', posts: @q_fav
-            / = link_to '人気の質問をもっと見る',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'reply_count desc', :created_at_gteq => 30.day.ago.all_day}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
-            / h2.mt-5　新着の質問
-            / .title-border.mb-3
-            / .mx-5
-            /     == render './posts/q_posts', posts: @q_new
-            / = link_to '最新の質問をもっと見る',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'id desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3 mb-5'
+            - if @fav_top.present?
+                h2　人気記事
+                .title-border.mb-3
+                .row.mx-1
+                    .col-md-6.d-none.d-md-inline-block.top-article
+                        = link_to a_show_path(@fav_top.public_uid), class:'text-decoration-none' do
+                            .d-flex.flex-column
+                                div
+                                    - if @fav_top.image.present?
+                                        = cl_image_tag(@fav_top.image, width: 1000, height: 500,  crop: :fill, class:'img-fluid')
+                                    - else 
+                                        = cl_image_tag(@fav_top.select_image, width: 500, height: 250,  crop: :fill, class:'img-fluid')
+                                h2.text-dark = @fav_top.title
+                                p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
+                                .d-flex.justify-content-between.flex-wrap
+                                    span.badge.badge-info
+                                        i.fas.fa-tag
+                                        = @fav_top.tag_list.first.truncate(15)
+                                    span.small style="color: goldenrod;"
+                                        i.fas.fa-star.mr-1
+                                        = @fav_top.favorites.length
+                                    span.small.text-dark 
+                                        i.fas.fa-user-circle
+                                        = @fav_top.user.username
+                                    span.small.text-dark
+                                        i.fas.fa-clock
+                                        = l @fav_top.created_at, format: :long
+                    .col-md-6.d-md-none.p-0
+                        = link_to a_show_path(@fav_top.public_uid), class:'text-decoration-none' do
+                            article.article.d-flex.flex-nowrap
+                                .article-image.mr-2
+                                    - if @fav_top.image.present?
+                                        = cl_image_tag(@fav_top.image, width: 300, height: 300,  crop: :fill, class:'')
+                                    - else 
+                                        = cl_image_tag(@fav_top.select_image, width: 300, height: 300,  crop: :fill, class:'')
+                                .align-self-center.d-flex.flex-column
+                                    h3.article-title = @fav_top.title
+                                    p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
+                                    .d-flex.justify-content-between.flex-wrap
+                                        span.badge.badge-info.mr-2
+                                            i.fas.fa-tag
+                                            = @fav_top.tag_list.first.truncate(15)
+                                        span.small.mr-2 style="color: goldenrod;"
+                                            i.fas.fa-star.mr-1
+                                            = @fav_top.favorites.length
+                                        span.small.mr-2.text-dark 
+                                            i.fas.fa-user-circle
+                                            = @fav_top.user.username
+                                        span.small.text-dark
+                                            i.fas.fa-clock
+                                            = l @fav_top.created_at, format: :long
+                        .border-bottom.article-border.mt-3.mb-3
+                    .col-md-6.p-0
+                        - @fav_side.each_with_index do |a,i|
+                            = link_to a_show_path(a.public_uid), class:'text-decoration-none' do
+                                article.article.d-flex.flex-nowrap
+                                    .article-image.mr-2
+                                        - if a.image.present?
+                                            = cl_image_tag(a.image, width: 200, height: 120,  crop: :fill, class:'')
+                                        - else 
+                                            = cl_image_tag(a.select_image, width: 200, height: 120,  crop: :fill, class:'')
+                                    .align-self-center.d-flex.flex-column 
+                                        h4.article-title = a.title
+                                        .d-flex.justify-content-between.flex-wrap
+                                            - if a.tag_list.present?
+                                                span.badge.badge-info.mr-2
+                                                    i.fas.fa-tag
+                                                    = a.tag_list.first.truncate(15)
+                                            span.small.mr-2 style="color: goldenrod;"
+                                                i.fas.fa-star.mr-1
+                                                = a.favorites.length
+                                            span.small.text-dark.mr-2 
+                                                i.fas.fa-user-circle
+                                                = a.user.username
+                                            span.small.text-dark.mr-2
+                                                i.fas.fa-clock
+                                                = l a.created_at, format: :long
+                                - unless i == 2
+                                    .border-bottom.article-border
+                = link_to '人気の投稿をもっと見る',{:controller=>"answers",:action=>"index",:q=>{:created_at_gteq => 30.day.ago.all_day, :sorts => 'favorites_count desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
+                h2.mt-4　新着記事
+                .title-border.mb-3
+                == render './posts/a_posts', posts: @a_new
+                = link_to '最新の投稿をもっと見る',{:controller=>"answers",:action=>"index",:q=>{:sorts => 'id desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
+            - else
+                .alert.alert-secondary 記事の投稿はまだありません
+            - if @q_fav.present?
+                h2.mt-4　人気の質問
+                .title-border.mb-3
+                .mx-5
+                    == render './posts/q_posts', posts: @q_fav
+                = link_to '人気の質問をもっと見る',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'reply_count desc', :created_at_gteq => 30.day.ago.all_day}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3'
+                h2.mt-5　新着の質問
+                .title-border.mb-3
+                .mx-5
+                    == render './posts/q_posts', posts: @q_new
+                = link_to '最新の質問をもっと見る',{:controller=>"questions",:action=>"index",:q=>{:sorts => 'id desc'}}, class:'col-md-8 offset-md-2 btn btn-sm btn-outline-info btn-block mt-3 mb-5'
+            - else
+                .alert.alert-secondary 質問の投稿はまだありません
