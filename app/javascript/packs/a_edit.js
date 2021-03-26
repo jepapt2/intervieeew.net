@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import TextCount from './components/TextCount.vue';
-import '../stylecheets/a_new'
+import '../stylecheets/a_new.scss'
 
 var initial_title = document.getElementById("initial_title").textContent;
 var initial_answerer = document.getElementById("initial_answerer").textContent;
