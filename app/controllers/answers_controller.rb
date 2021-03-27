@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
     a_head_post_set
     a_q_content_post_set
     thumbnail
+    description(@a,200)
   end
 
   def new
@@ -62,8 +63,7 @@ class AnswersController < ApplicationController
   def edit
     if user_signed_in?
       @a = Answer.find_by(public_uid: params[:id])
-      s_i = SelectImage.new
-      @select_image = s_i.image
+      @select_image = image
       a_content_post_set
       a_head_post_set
       a_q_content_post_set

@@ -7,7 +7,7 @@
                     = link_to 'ログアウト', destroy_user_session_path, class:'btn btn-outline-secondary mr-2'
                     = link_to 'ユーザー編集', edit_user_registration_path, class:'btn btn-outline-secondary'
         h2.bg-light.mb-4  #{@user.username}さんのプロフィール
-        - if @a.nil? && @q.nil? && @fav.nil?
+        - if @a.blank? && @q.blank? && @fav.blank?
             .alert.alert-secondary #{@user.username}さんに関係する投稿はまだありません
         - if @a.present?
             .card.mb-3

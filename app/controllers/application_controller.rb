@@ -28,6 +28,27 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def description(a,t)
+
+      def cut(x,y)
+        if y.present?
+          return x + '.' + y
+        end
+      end
+      @description =
+      [a.overview, cut(' Q',a.question.content_1), cut('A',a.question.content_1),
+        cut('Q',a.question.content_2), cut('A',a.question.content_2),
+        cut('Q',a.question.content_3), cut('A',a.question.content_3),
+        cut('Q',a.question.content_4), cut('A',a.question.content_4),
+        cut('Q',a.question.content_5), cut('A',a.question.content_5),
+        cut('Q',a.question.content_6), cut('A',a.question.content_6),
+        cut('Q',a.question.content_7), cut('A',a.question.content_7),
+        cut('Q',a.question.content_8), cut('A',a.question.content_8),
+        cut('Q',a.question.content_9), cut('A',a.question.content_9),
+        cut('Q',a.question.content_10), cut('A',a.question.content_10)]
+      .compact.reject(&:empty?).join.truncate(t)
+    end
+
     def q_content_post_set
       @q_content_post = [
         @q.content_1,
