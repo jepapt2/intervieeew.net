@@ -13,6 +13,11 @@ class AnswersController < ApplicationController
     a_q_content_post_set
     thumbnail
     description(@a,200)
+    if @a.image.present?
+      @twitter_card = @a.image
+    else 
+      @twitter_card = 'https://res.cloudinary.com/hgxti2nqv/image/upload/v1/' + @a.select_image
+    end
   end
 
   def new
