@@ -44,7 +44,7 @@
                     = cl_image_tag(x, width: 150, crop: :fill, class: 'image')
             / フリー素材ここまで
             = f.file_field :image, class: 'form-control-file mt-2', "v-bind:disabled" => "up_image", "ref" => "file"
-            - @a_q_content_post.compact.reject(&:empty?).each_with_index do |x, i|
+            - @a_question_post.compact.reject(&:empty?).each_with_index do |x, i|
               .border-bottom(style="margin: 10px 0;")
               span.badge.badge-info.head @click="changehead(#{i})" 
                 - if i === 0 
@@ -66,6 +66,9 @@
               small 半角コンマで区切って入力(例：ゲーム,アニメ,キャラクター)
           .col-12.mt-3
             = f.submit "投稿する", class:"btn btn-secondary btn-block mb-3"
+        .text-right.mt-5
+          = link_to "記事を削除する", a_destroy_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-danger btn-sm"
+          .initial-content
             - @a_content_post.each_with_index do |x, i|
               p id="initial_head_#{i}" style="display: none;" = @a_head_post[i]
               p id="initial_content_#{i}" style="display: none;" = x

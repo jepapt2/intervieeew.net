@@ -21,12 +21,47 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def confirm
-    @q = current_user.questions.new(q_params)
+  def edit
+    @q = Question.find_by(public_uid: params[:id])
+    q_initial_content_post_set
+    q_content_post_set
+    if @q.user == current_user
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @q = Question.find_by(public_uid: params[:id])
     q_content_post_set
     q_initial_content_post_set
-    render :new if @q.invalid?
+    if @q.update_attributes(q_params)
+      redirect_to q_show_url(@q)
+    else
+      render :edit
+    end
   end
+
+  def destroy
+    @q = Question.find_by(public_uid: params[:id])
+    if @q.user == current_user
+      @q.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
+
+ # def confirm
+  #   @q = current_user.questions.new(q_params)
+  #   q_content_post_set
+  #   q_initial_content_post_set
+  #   render :new if @q.invalid?
+  # end
 
   def create
     @q = current_user.questions.new(q_params)

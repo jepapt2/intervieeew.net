@@ -34,9 +34,9 @@
                             article.article.d-flex.flex-nowrap
                                 .article-image.mr-2
                                     - if @fav_top.image.present?
-                                        = cl_image_tag(@fav_top.image, width: 300, height: 300,  crop: :fill, class:'')
+                                        = cl_image_tag(@fav_top.image, width: 240, height: 240,  crop: :fill, class:'img-fluid')
                                     - else 
-                                        = cl_image_tag(@fav_top.select_image, width: 300, height: 300,  crop: :fill, class:'')
+                                        = cl_image_tag(@fav_top.select_image, width: 240, height: 240,  crop: :fill, class:'img-fluid')
                                 .align-self-center.d-flex.flex-column
                                     h3.article-title = @fav_top.title
                                     p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)

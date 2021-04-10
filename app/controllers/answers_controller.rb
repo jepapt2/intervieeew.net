@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :content_set, :head_set
+  before_action :question_set
 
   def index
     @search = Answer.ransack(params[:q])
@@ -10,7 +11,7 @@ class AnswersController < ApplicationController
     @a = Answer.find_by(public_uid: params[:id])
     a_content_post_set
     a_head_post_set
-    a_q_content_post_set
+    a_question_set
     thumbnail
     description(@a,200)
     if @a.image.present?
@@ -66,12 +67,12 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
-      @a = Answer.find_by(public_uid: params[:id])
+    @a = Answer.find_by(public_uid: params[:id])
+    if @a.user == current_user
       @select_image = image
       a_content_post_set
       a_head_post_set
-      a_q_content_post_set
+      a_question_set
     else
       redirect_to new_user_session_path
     end
@@ -82,7 +83,7 @@ class AnswersController < ApplicationController
     @select_image = image
     a_content_post_set
     a_head_post_set
-    a_q_content_post_set
+    a_question_set
     thumbnail
     if @a.update_attributes(a_params)
       if @a.saved_change_to_select_image?
@@ -92,6 +93,17 @@ class AnswersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @a = Answer.find_by(public_uid: params[:id])
+      if @a.user == current_user
+      @a.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
 
     # if @a.saved_change_to_image?
     #   @a.select_image = ''
@@ -99,11 +111,10 @@ class AnswersController < ApplicationController
     # else @a.seved_change_to_select_image?
     #   @a.image.destroy
     # end
-  end
 
   private
   def a_params
-    params.require(:answer).permit(:title, :answerer, :overview, @content_array, @head_array, :image, :image_cache, :select_image, :question_id, :tag_list)
+    params.require(:answer).permit(:title, :answerer, :overview, @content_array, @head_array, @question_array, :image, :image_cache, :select_image, :question_id, :tag_list)
   end
 
   def image 

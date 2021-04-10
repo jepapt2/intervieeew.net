@@ -93,6 +93,8 @@ gem 'ransack'
 
 gem 'meta-tags'
 
+gem "twitter"
+
 group :production do
   gem 'pg'
 end

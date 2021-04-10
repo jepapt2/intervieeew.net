@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_153231) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2021_04_06_064806) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title", limit: 50, null: false
@@ -220,19 +217,119 @@ ActiveRecord::Schema.define(version: 2021_03_27_153231) do
     t.string "head_99", limit: 20
     t.string "head_100", limit: 20
     t.string "image"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "public_uid"
     t.string "select_image"
-    t.bigint "question_id"
+    t.integer "question_id"
+    t.string "question_1", limit: 255
+    t.string "question_2", limit: 255
+    t.string "question_3", limit: 255
+    t.string "question_4", limit: 255
+    t.string "question_5", limit: 255
+    t.string "question_6", limit: 255
+    t.string "question_7", limit: 255
+    t.string "question_8", limit: 255
+    t.string "question_9", limit: 255
+    t.string "question_10", limit: 255
+    t.string "question_11", limit: 255
+    t.string "question_12", limit: 255
+    t.string "question_13", limit: 255
+    t.string "question_14", limit: 255
+    t.string "question_15", limit: 255
+    t.string "question_16", limit: 255
+    t.string "question_17", limit: 255
+    t.string "question_18", limit: 255
+    t.string "question_19", limit: 255
+    t.string "question_20", limit: 255
+    t.string "question_21", limit: 255
+    t.string "question_22", limit: 255
+    t.string "question_23", limit: 255
+    t.string "question_24", limit: 255
+    t.string "question_25", limit: 255
+    t.string "question_26", limit: 255
+    t.string "question_27", limit: 255
+    t.string "question_28", limit: 255
+    t.string "question_29", limit: 255
+    t.string "question_30", limit: 255
+    t.string "question_31", limit: 255
+    t.string "question_32", limit: 255
+    t.string "question_33", limit: 255
+    t.string "question_34", limit: 255
+    t.string "question_35", limit: 255
+    t.string "question_36", limit: 255
+    t.string "question_37", limit: 255
+    t.string "question_38", limit: 255
+    t.string "question_39", limit: 255
+    t.string "question_40", limit: 255
+    t.string "question_41", limit: 255
+    t.string "question_42", limit: 255
+    t.string "question_43", limit: 255
+    t.string "question_44", limit: 255
+    t.string "question_45", limit: 255
+    t.string "question_46", limit: 255
+    t.string "question_47", limit: 255
+    t.string "question_48", limit: 255
+    t.string "question_49", limit: 255
+    t.string "question_50", limit: 255
+    t.string "question_51", limit: 255
+    t.string "question_52", limit: 255
+    t.string "question_53", limit: 255
+    t.string "question_54", limit: 255
+    t.string "question_55", limit: 255
+    t.string "question_56", limit: 255
+    t.string "question_57", limit: 255
+    t.string "question_58", limit: 255
+    t.string "question_59", limit: 255
+    t.string "question_60", limit: 255
+    t.string "question_61", limit: 255
+    t.string "question_62", limit: 255
+    t.string "question_63", limit: 255
+    t.string "question_64", limit: 255
+    t.string "question_65", limit: 255
+    t.string "question_66", limit: 255
+    t.string "question_67", limit: 255
+    t.string "question_68", limit: 255
+    t.string "question_69", limit: 255
+    t.string "question_70", limit: 255
+    t.string "question_71", limit: 255
+    t.string "question_72", limit: 255
+    t.string "question_73", limit: 255
+    t.string "question_74", limit: 255
+    t.string "question_75", limit: 255
+    t.string "question_76", limit: 255
+    t.string "question_77", limit: 255
+    t.string "question_78", limit: 255
+    t.string "question_79", limit: 255
+    t.string "question_80", limit: 255
+    t.string "question_81", limit: 255
+    t.string "question_82", limit: 255
+    t.string "question_83", limit: 255
+    t.string "question_84", limit: 255
+    t.string "question_85", limit: 255
+    t.string "question_86", limit: 255
+    t.string "question_87", limit: 255
+    t.string "question_88", limit: 255
+    t.string "question_89", limit: 255
+    t.string "question_90", limit: 255
+    t.string "question_91", limit: 255
+    t.string "question_92", limit: 255
+    t.string "question_93", limit: 255
+    t.string "question_94", limit: 255
+    t.string "question_95", limit: 255
+    t.string "question_96", limit: 255
+    t.string "question_97", limit: 255
+    t.string "question_98", limit: 255
+    t.string "question_99", limit: 255
+    t.string "question_100", limit: 255
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "answer_id", null: false
+    t.integer "user_id", null: false
+    t.integer "answer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_id"], name: "index_favorites_on_answer_id"
@@ -341,14 +438,14 @@ ActiveRecord::Schema.define(version: 2021_03_27_153231) do
     t.string "content_98"
     t.string "content_99"
     t.string "content_100"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "public_uid"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "taggings", id: :serial, force: :cascade do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -357,6 +454,7 @@ ActiveRecord::Schema.define(version: 2021_03_27_153231) do
     t.string "context", limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
     t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
     t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
@@ -366,11 +464,12 @@ ActiveRecord::Schema.define(version: 2021_03_27_153231) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", id: :serial, force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name", limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

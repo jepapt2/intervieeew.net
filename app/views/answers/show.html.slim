@@ -23,7 +23,7 @@
             = cl_image_tag(@thumbnail, class:'img-fluid mb-3')
             p
                 = @a.overview
-            - @a_q_content_post.compact.reject(&:empty?).each_with_index do |x, i|
+            - @a_question_post.compact.reject(&:empty?).each_with_index do |x, i|
                 - if @a_head_post[i].present?
                     h3.under = @a_head_post[i]
                 p.mt-4

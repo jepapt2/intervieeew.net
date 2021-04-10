@@ -60,6 +60,7 @@
                 text-count :text="head[#{i}]" :limit="20"
               p
                 b --#{x}
+              = f.hidden_field @question_array[i], value: x
               = f.text_area @content_array[i], class: 'form-control', "v-model" => "content[#{i}]"
               text-count :text="content[#{i}]" :limit="255"
           .col-12.border-bottom.article-border

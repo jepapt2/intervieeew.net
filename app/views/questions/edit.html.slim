@@ -1,5 +1,5 @@
 #App.container
-  = form_with model: @q, local: true, url: qs_path do |f|
+  = form_with model: @q, local: true, url: q_update_path do |f|
     = render 'layouts/error_messages', model: f.object 
     .row
       .col-md-10.offset-md-1.form-group
@@ -41,5 +41,7 @@
             small 半角コンマで区切って入力(例：ゲーム,アニメ,キャラクター)
           .col-12.mt-3
             = f.submit "投稿する", class:"btn btn-secondary btn-block mb-3"
+        .text-right.mt-5
+          = link_to "質問を削除する", q_destroy_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-danger btn-sm"
               
 = javascript_pack_tag 'q_new'

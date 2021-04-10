@@ -1,8 +1,8 @@
 class Question < ApplicationRecord
   acts_as_taggable
   generate_public_uid
-  belongs_to :user
-  has_many :answers
+  belongs_to :user, optional: true
+  has_many :answers, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :content_1, presence: true

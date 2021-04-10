@@ -1,12 +1,23 @@
 .container
     .row
-      .col-md-10.offset-md-1.form-group
+      .col-md-10.offset-md-1
+        - if user_signed_in?
+                - if current_user.id === @q.user.id
+                    .text-right.mb-4
+                        = link_to "編集する", q_edit_path(@q.public_uid), class: 'btn btn-outline-secondary'
+        .d-flex.justify-content-between.mb-3
+          span style="color: green;"
+                    i.fas.fa-reply.fa-lg.mr-1
+                    = @q.answers.length
+          a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" Tweet
+          script[async src="https://platform.twitter.com/widgets.js" charset="utf-8"]
         h2 = @q.title
         .border-bottom.article-border
         - @q_content_post.each_with_index do |x, i|
-          p
-            b 質問#{i+1}
-          p = x
+          div style="word-wrap: break-word;"
+            p
+              b 質問#{i+1}
+            p = x
           .border-bottom.article-border
         -if @q.tag_list.present?
           p.mb-3

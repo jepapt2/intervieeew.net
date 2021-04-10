@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post '/q/confirm', to: 'questions#confirm'
   post '/q', to: 'questions#create', as: 'qs'
   get '/q/:id', to: 'questions#show', as: 'q_show'
+  get '/q/edit/:id', to: 'questions#edit', as: 'q_edit'
+  patch '/q/edit/:id', to: 'questions#update', as: 'q_update'
+  delete '/q/:id', to: 'questions#destroy', as: 'q_destroy'
   # get '/a', to:'answers#index'
   get '/:id/a', to: 'answers#new', as: 'a_new'
   post '/:id/a_confirm', to: 'answers#confirm', as: 'a_confirm'
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
   get '/a/:id', to: 'answers#show', as: 'a_show'
   get '/a/edit/:id', to: 'answers#edit', as: 'a_edit'
   patch '/a/edit/:id', to: 'answers#update', as: 'a_update'
+  delete '/a/:id', to: 'answers#destroy', as: 'a_destroy'
   # post '/a/:id/favorites', to: 'favorites#create', as: 'favorite_create'
   # delete '/a/:id/favorites', to: 'favorites#destroy', as: 'favorite_destroy'
   resources :answers, only: [:index] do
