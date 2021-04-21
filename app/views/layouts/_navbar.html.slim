@@ -1,14 +1,18 @@
 .fluid-container
-  .d-flex.justify-content-around.flex-nowrap.m-0
+  .d-flex.justify-content-around.flex-nowrap
     .d-none.d-sm-inline-block
       = link_to root_path, class:'text-decoration-none' do
         h1.text-dark intervieeew.net
     .d-none.d-sm-inline-block
-       = search_form_for @search, url:answers_path, class:'form-inline' do |f|
-        = f.button :type => "submit", class:'bg-white', style: 'border-style: none;' do
-          i.fas.fa-search.fa-lg.mt-2
-        = f.search_field :sorts, value: 'id desc', class: 'form-control', style: 'display: none;'
-        = f.search_field :title_or_tags_name_cont, value: params.dig(:q, :title_or_tags_name_cont), class: 'form-control mt-2', placeholder:'記事を検索'
+      
+      span
+        = search_form_for @search, url:answers_path, class:'form-inline', style: 'display: inline-block;' do |f|
+          a href ="https://twitter.com/intervieeew" target="_blank"
+            i.fab.fa-twitter.fa-2x.mt-1.ml-4
+          = f.button :type => "submit", class:'bg-white', style: 'border-style: none;' do
+            i.fas.fa-search.fa-lg.mt-2
+          = f.search_field :sorts, value: 'id desc', class: 'form-control', style: 'display: none;'
+          = f.search_field :title_or_tags_name_cont, value: params.dig(:q, :title_or_tags_name_cont), id: 'navbar-search', class: 'form-control mt-2', placeholder:'記事を検索'
 nav.navbar.navbar-expand-sm.navbar-light.bg-info.mb-5
   a.navbar-brand.d-block.d-sm-none.center-align.text-light intervieeew.net
   button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"

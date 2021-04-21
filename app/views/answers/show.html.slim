@@ -47,18 +47,21 @@
                 .text-dark
                     i.fas.fa-clock
                     = l @a.created_at, format: :long
-            = link_to q_show_path(@a.question.public_uid),class:'text-decoration-none text-dark' do 
-                .card
-                    .card-header
-                        | この投稿の質問
-                    .card-body
-                        h5.card-title
-                            = @a.question.title
-                        p.card-text
-                            = [@a.question.content_1,@a.question.content_2,@a.question.content_3,@a.question.content_4,@a.question.content_5,@a.question.content_6,@a.question.content_7,@a.question.content_8,@a.question.content_9,@a.question.content_10].compact.reject(&:empty?).join(',').truncate(200)
-                        - if @a.question.tag_list.present?
-                            p
-                                span.badge.badge-primary
-                                    i.far.fa-question-circle
-                                    = @a.question.tag_list.first
+            - if @a.question.present?
+                = link_to q_show_path(@a.question.public_uid),class:'text-decoration-none text-dark' do 
+                    .card
+                        .card-header
+                            | この投稿の質問
+                        .card-body
+                            h5.card-title
+                                = @a.question.title
+                            p.card-text
+                                = [@a.question.content_1,@a.question.content_2,@a.question.content_3,@a.question.content_4,@a.question.content_5,@a.question.content_6,@a.question.content_7,@a.question.content_8,@a.question.content_9,@a.question.content_10].compact.reject(&:empty?).join(',').truncate(200)
+                            - if @a.question.tag_list.present?
+                                p
+                                    span.badge.badge-primary
+                                        i.far.fa-question-circle
+                                        = @a.question.tag_list.first
+            - else
+                .alert.alert-secondary 質問は削除されました
                     
