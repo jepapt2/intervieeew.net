@@ -41,8 +41,12 @@
                             i.fas.fa-tag
                             = tag
             .border-bottom.article-border
-            = link_to user_path(@a.user.public_uid)
-                p 投稿者:#{@a.user.username} 
+            .d-flex.justify-content-between.mb-3
+                = link_to user_path(@a.user.public_uid)
+                    p 投稿者:#{@a.user.username}
+                .text-dark
+                    i.fas.fa-clock
+                    = l @a.created_at, format: :long
             = link_to q_show_path(@a.question.public_uid),class:'text-decoration-none text-dark' do 
                 .card
                     .card-header

@@ -1,3 +1,10 @@
+- set_meta_tags title: @q.title,
+    og: {   site_name: 'intervieeew.net',
+            title: @q.title,
+            description: [@q.content_1,@q.content_2,@q.content_3,@q.content_4,@q.content_5,@q.content_6,@q.content_7,@q.content_8,@q.content_9,@q.content_10].compact.reject(&:empty?).join(','),
+            type: 'website',
+            url: request.original_url,
+            locale: 'ja_JP'}
 .container
     .row
       .col-md-10.offset-md-1
@@ -26,8 +33,12 @@
                 span.badge.badge-primary.mr-2
                   i.far.fa-question-circle
                   = tag
-        = link_to user_path(@q.user.public_uid)
-          p.mb-5 投稿者:#{@q.user.username} 
+        .d-flex.justify-content-between.mb-3
+          = link_to user_path(@q.user.public_uid)
+            p.mb-5 投稿者:#{@q.user.username}
+          .text-dark
+            i.fas.fa-clock
+            = l @q.created_at, format: :long
         = link_to '答える', a_new_path(@q.public_uid), class:'btn btn-lg btn-info btn-block mb-5'
         -if @q.answers.present?
           h3.bg-light この質問に回答した投稿

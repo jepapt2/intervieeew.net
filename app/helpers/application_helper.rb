@@ -18,9 +18,11 @@ module ApplicationHelper
                 type: 'website',
                 url: request.original_url,
                 locale: 'ja_JP',
+                image: image_url("og_image.png")
               },
               twitter: {
-                card: 'summary'
+                card: 'summary',
+                site: '@intervieeew'
               }
         }
         
