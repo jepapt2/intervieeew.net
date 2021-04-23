@@ -2,7 +2,10 @@
     = link_to q_show_path(q.public_uid), class:'text-decoration-none' do
         article
             h3.article-title = q.title
-            p.text-dark = [q.content_1,q.content_2,q.content_3,q.content_4,q.content_5,q.content_6,q.content_7,q.content_8,q.content_9,q.content_10].compact.reject(&:empty?).join(',').truncate(200)
+            ul.text-dark
+                li = q.content_1.truncate(20)
+                li = q.content_2.truncate(20)
+                li = q.content_3.truncate(20)
             .d-flex.flex-wrap
                 - if q.tag_list.present?
                         span.badge.badge-primary.mr-5

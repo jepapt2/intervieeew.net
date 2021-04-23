@@ -3,13 +3,13 @@
         article.article.d-flex.flex-nowrap
             .article-image.mr-2
                 - if a.image.present?
-                    = cl_image_tag(a.image, width: 200, height: 200,  crop: :fill, class:'')
+                    = cl_image_tag(a.image, width: 180, height: 180,  crop: :fill, class:'')
                 - else 
-                    = cl_image_tag(a.select_image, width: 200, height: 200,  crop: :fill, class:'')
+                    = cl_image_tag(a.select_image, width: 180, height: 180,  crop: :fill, class:'')
             .align-self-center.d-flex.flex-column
                 h4.article-title = a.title
                 - if a.overview.present?
-                    p.text-dark = a.overview.truncate(100)
+                    p.text-dark = a.overview.truncate(50)
                 .d-flex.flex-wrap
                     - if a.tag_list.present?
                         span.badge.badge-info.mr-5

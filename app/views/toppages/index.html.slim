@@ -34,12 +34,12 @@
                             article.article.d-flex.flex-nowrap
                                 .article-image.mr-2
                                     - if @fav_top.image.present?
-                                        = cl_image_tag(@fav_top.image, width: 240, height: 240,  crop: :fill, class:'img-fluid')
+                                        = cl_image_tag(@fav_top.image, width: 220, height: 220,  crop: :fill, class:'')
                                     - else 
-                                        = cl_image_tag(@fav_top.select_image, width: 240, height: 240,  crop: :fill, class:'img-fluid')
+                                        = cl_image_tag(@fav_top.select_image, width: 220, height: 220,  crop: :fill, class:'')
                                 .align-self-center.d-flex.flex-column
                                     h3.article-title = @fav_top.title
-                                    p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(200)
+                                    p.text-dark.mb-1 = [@fav_top.overview].compact.reject(&:empty?).join(',').truncate(50)
                                     .d-flex.justify-content-between.flex-wrap
                                         - if @fav_top.tag_list.present?
                                             span.badge.badge-info.mr-2

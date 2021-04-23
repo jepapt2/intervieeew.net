@@ -1,4 +1,4 @@
-class AddColumnAnswers < ActiveRecord::Migration[6.0]
+class AddColumnAnswer < ActiveRecord::Migration[6.0]
   def change
     add_column :answers, :question_1, :string, :limit=>255
     add_column :answers, :question_2, :string, :limit=>255
