@@ -13,7 +13,7 @@ module ApplicationHelper
             locale: 'ja_JP',
             og: {
                 site_name: 'intervieeew.net',
-                title: '',
+                title: '自己インタビュー記事投稿サイト「intervieeew.net」',
                 description: 'それっぽいインタビュー記事を自分で作れる！', 
                 type: 'website',
                 url: request.original_url,
@@ -21,7 +21,7 @@ module ApplicationHelper
                 image: image_url("og_image.png")
               },
               twitter: {
-                card: 'summary',
+                card: 'summary_large_image',
                 site: '@intervieeew'
               }
         }
