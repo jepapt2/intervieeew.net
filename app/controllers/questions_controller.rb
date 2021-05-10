@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :q_find, only: [:show, :edit, :update, :destroy]
+  before_action :q_content_post_set, only: [:show, :edit, :update]
   before_action :content_set
   
   def index
@@ -7,14 +9,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @q = Question.find_by(public_uid: params[:id])
-    q_content_post_set
   end
 
   def new
     if user_signed_in?
       @q = current_user.questions.new
-      q_content_post_set
       q_initial_content_post_set
     else
       redirect_to new_user_session_path
@@ -22,9 +21,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @q = Question.find_by(public_uid: params[:id])
     q_initial_content_post_set
-    q_content_post_set
     if @q.user == current_user
       unless user_signed_in?
         redirect_to new_user_session_path
@@ -35,8 +32,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @q = Question.find_by(public_uid: params[:id])
-    q_content_post_set
     q_initial_content_post_set
     if @q.update_attributes(q_params)
       redirect_to q_show_url(@q)
@@ -46,7 +41,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @q = Question.find_by(public_uid: params[:id])
     if @q.user == current_user
       @q.destroy
       redirect_to root_path
@@ -65,7 +59,6 @@ class QuestionsController < ApplicationController
 
   def create
     @q = current_user.questions.new(q_params)
-    q_content_post_set
     q_initial_content_post_set
     if params[:back].present?
       render :new
@@ -90,5 +83,8 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:title, @content_array, :tag_list)
   end
 
+  def q_find
+    @q = Question.find_by(public_uid: params[:id])
+  end
   
 end

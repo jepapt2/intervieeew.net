@@ -1,6 +1,12 @@
 class AnswersController < ApplicationController
-  before_action :content_set, :head_set
-  before_action :question_set
+  before_action :q_find, only: [:new, :create]
+  before_action :a_find, only: [:show, :edit, :update, :destroy]
+  before_action :content_set, :head_set, :question_set
+  before_action :a_content_post_set, only: [:show, :edit, :update]
+  before_action :q_content_post_set, only: [:new, :create]
+  before_action :thumbnail, only: [:show, :edit, :update]
+  before_action :a_question_set, only: [:show, :edit, :update]
+  before_action :a_head_post_set, only: [:show, :edit, :update]
 
   def index
     @search = Answer.ransack(params[:q])
@@ -8,11 +14,6 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @a = Answer.find_by(public_uid: params[:id])
-    a_content_post_set
-    a_head_post_set
-    a_question_set
-    thumbnail
     description(@a,200)
     if @a.image.present?
       @twitter_card = @a.image
@@ -22,38 +23,17 @@ class AnswersController < ApplicationController
   end
 
   def new
-    @q = Question.find_by(public_uid: params[:id])
     if user_signed_in?
       @a = current_user.answers.new
       @select_image = image
-      q_content_post_set
-      a_content_post_set
-      a_head_post_set
     else
       redirect_to new_user_session_path
     end
   end
 
-  # def confirm
-  #   @a = current_user.answers.new(a_params)
-  #   @q = Question.find_by(public_uid: params[:id])
-  #   s_i = SelectImage.new
-  #   @select_image = s_i.image
-  #   q_content_post_set
-  #   a_content_post_set
-  #   a_head_post_set
-  #   thumbnail
-  #   render :new if @a.invalid?
-  # end
-
   def create
     @a = current_user.answers.new(a_params)
-    @q = Question.find_by(public_uid: params[:id])
     @select_image = image
-    q_content_post_set
-    a_content_post_set
-    a_head_post_set
-    thumbnail
     if params[:back].present?
       render :new
       return
@@ -67,24 +47,15 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @a = Answer.find_by(public_uid: params[:id])
     if @a.user == current_user
       @select_image = image
-      a_content_post_set
-      a_head_post_set
-      a_question_set
     else
       redirect_to new_user_session_path
     end
   end
 
   def update
-    @a = Answer.find_by(public_uid: params[:id])
     @select_image = image
-    a_content_post_set
-    a_head_post_set
-    a_question_set
-    thumbnail
     if @a.update_attributes(a_params)
       if @a.saved_change_to_select_image?
         @a.update_attributes( image: "")
@@ -96,8 +67,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @a = Answer.find_by(public_uid: params[:id])
-      if @a.user == current_user
+    if @a.user == current_user
       @a.destroy
       redirect_to root_path
     else
@@ -115,6 +85,14 @@ class AnswersController < ApplicationController
   private
   def a_params
     params.require(:answer).permit(:title, :answerer, :overview, @content_array, @head_array, @question_array, :image, :image_cache, :select_image, :question_id, :tag_list)
+  end
+
+  def q_find
+    @q = Question.find_by(public_uid: params[:id])
+  end
+
+  def a_find
+    @a = Answer.find_by(public_uid: params[:id])
   end
 
   def image 

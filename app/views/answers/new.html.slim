@@ -72,7 +72,8 @@
           .col-12.mt-3
             = f.hidden_field :question_id, value: @q.id
             = f.submit "投稿する", class:"btn btn-secondary btn-block mb-3"
-            - @a_content_post.each_with_index do |x, i|
-              p id="initial_head_#{i}" style="display: none;" = @a_head_post[i]
-              p id="initial_content_#{i}" style="display: none;" = x
+            - @a_content_post.present?
+              - @a_content_post.each_with_index do |x, i|
+                p id="initial_head_#{i}" style="display: none;" = @a_head_post[i]
+                p id="initial_content_#{i}" style="display: none;" = x
 = javascript_pack_tag 'a_new.js'
